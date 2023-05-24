@@ -15,14 +15,13 @@ pipelines:
           defaultBranch: main
           shallow_clone: true
           auto_update: false
-          branchblacklist: main, dependabot/**
+          branchblacklist: dependabot/**
     stages:
       - scripts:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
-          approval:
-            type: success
+          approval: manual
           jobs:
             defaultJob:
               timeout: 0
