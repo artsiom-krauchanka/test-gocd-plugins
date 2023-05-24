@@ -15,7 +15,7 @@ pipelines:
           defaultBranch: main
           shallow_clone: true
           auto_update: true
-          branchblacklist: main,dependabot/**
+          branchblacklist: main*, dependabot/**
     stages:
       - scripts:
           fetch_materials: true
