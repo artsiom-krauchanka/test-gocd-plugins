@@ -12,10 +12,9 @@ pipelines:
           version: 1.3.5
         options:
           url: https://github.com/artsiom-krauchanka/test-gocd-plugins
-          defaultBranch: main
           shallow_clone: true
-          auto_update: true
-          branchblacklist: main*, dependabot/**
+          auto_update: false
+          branchblacklist: main, dependabot/**
     stages:
       - scripts:
           fetch_materials: true
