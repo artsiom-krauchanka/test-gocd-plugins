@@ -1,0 +1,35 @@
+format_version: 10
+pipelines:
+  test-pipeline:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-fb-material:
+        plugin_configuration:
+          id: git.fb
+          version: 1.3.5
+        options:
+          url: https://github.com/artsiom-krauchanka/test-gocd-plugins
+          defaultBranch: main
+          shallow_clone: true
+          auto_update: true
+          branchblacklist: dependabot/**
+    stages:
+      - stage:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            job:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - hello
+                    command: echo
+                    run_if: passed
