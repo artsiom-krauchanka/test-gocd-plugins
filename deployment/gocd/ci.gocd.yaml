@@ -24,13 +24,11 @@ pipelines:
           approval:
             type: success
           jobs:
-            step:
+            defaultJob:
               timeout: 0
               tasks:
-                - plugin:
-                    configuration:
-                      id: script-executor
-                      version: '1'
-                    options:
-                      script: echo noop
+                - exec:
+                    arguments:
+                      - hello
+                    command: echo
                     run_if: passed
