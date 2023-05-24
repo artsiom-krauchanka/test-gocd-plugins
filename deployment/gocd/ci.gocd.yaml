@@ -1,4 +1,4 @@
-format_version: 10
+format_version: 5
 pipelines:
   test-pipeline-yaml:
     group: defaultGroup
@@ -17,19 +17,20 @@ pipelines:
           auto_update: true
           branchblacklist: dependabot/**
     stages:
-      - stage:
+      - scripts:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
           approval:
             type: success
-            allow_only_on_success: false
           jobs:
-            job:
+            step:
               timeout: 0
               tasks:
-                - exec:
-                    arguments:
-                      - hello
-                    command: echo
+                - plugin:
+                    configuration:
+                      id: script-executor
+                      version: '1'
+                    options:
+                      script: echo noop
                     run_if: passed
