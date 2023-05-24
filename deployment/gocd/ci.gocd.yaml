@@ -21,7 +21,8 @@ pipelines:
           fetch_materials: true
           keep_artifacts: false
           clean_workspace: false
-          approval: manual
+          approval:
+            type: manual
           jobs:
             defaultJob:
               timeout: 0
