@@ -1,10 +1,10 @@
 format_version: 5
 pipelines:
-  test-pipeline-yaml:
+  test-pipeline-fb:
     group: defaultGroup
     label_template: ${COUNT}
     lock_behavior: none
-    display_order: -1
+    display_order: 1
     materials:
       git-fb-material:
         plugin_configuration:
@@ -15,6 +15,36 @@ pipelines:
           defaultBranch: main
           shallow_clone: true
           branchblacklist: main,dependabot/**
+    stages:
+      - scripts:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval: success
+          jobs:
+            defaultJob:
+              timeout: 0
+              tasks:
+                - exec:
+                    arguments:
+                      - hello
+                    command: echo
+                    run_if: passed
+  test-pipeline-pr:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: 2
+    materials:
+      git-pr-material:
+        plugin_configuration:
+          id: github.pr
+          version: 1.4.1
+        options:
+          url: https://github.com/artsiom-krauchanka/test-gocd-plugins
+          defaultBranch: main
+          shallow_clone: true
+          branchblacklist: dependabot/**
     stages:
       - scripts:
           fetch_materials: true
