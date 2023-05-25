@@ -6,7 +6,7 @@ pipelines:
     lock_behavior: none
     display_order: 1
     materials:
-      git-fb-material:
+      git-fb-material-2:
         plugin_configuration:
           id: git.fb
           version: 1.3.5
